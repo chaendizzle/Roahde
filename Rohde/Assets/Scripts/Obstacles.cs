@@ -31,8 +31,6 @@ public class Obstacles : MonoBehaviour {
             }
         }
         pathfinder = new Pathfinder(obstacles);
-        var path = FindPath(new Vector3(-2.0f, -1.3f), new Vector3(-3.2f, 0.6f));
-        DrawPath(path);
     }
 	
 	// Update is called once per frame
