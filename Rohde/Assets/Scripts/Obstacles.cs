@@ -17,6 +17,8 @@ public class Obstacles : MonoBehaviour
     Vector3 startPos;
     Vector3 endPos;
 
+    Color color = Color.black;
+
     static Obstacles instance;
 
     // Use this for initialization
@@ -43,11 +45,7 @@ public class Obstacles : MonoBehaviour
 		if (Input.GetMouseButtonDown(0))
         {
             held = true;
-            startPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            held = false;
+            startPos = GameObject.FindGameObjectWithTag("Player").transform.position;
         }
         List<Vector3> path = new List<Vector3>();
         if (held)
@@ -59,6 +57,11 @@ public class Obstacles : MonoBehaviour
                 path = new List<Vector3>();
             }
         }
+        if (Input.GetMouseButtonUp(0))
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().SetPath(path);
+            held = false;
+        }
         DrawPath(path);
     }
 
@@ -67,6 +70,7 @@ public class Obstacles : MonoBehaviour
         for (int i = markers.Count; i < path.Count; i++)
         {
             markers.Add(Instantiate(markerPrefab));
+            markers[markers.Count - 1].GetComponent<Marker>().SetColor(color);
         }
         for (int i = path.Count; i < markers.Count; i++)
         {
@@ -80,8 +84,14 @@ public class Obstacles : MonoBehaviour
             if (i < path.Count - 1)
             {
                 markers[i].GetComponent<Marker>().target = markers[i + 1];
+                markers[i].GetComponent<Marker>().SetColor(color);
             }
         }
+    }
+
+    public static void SetColor(Color color)
+    {
+        instance.color = color;
     }
 
     public List<Vector3> FindPath(Vector3 start, Vector3 end)
@@ -92,9 +102,14 @@ public class Obstacles : MonoBehaviour
             ?.Select(p => tilemap.GetCellCenterWorld(ToGridPos(p))).ToList();
     }
 
-    public static List<Vector3> PathTo(Vector3 start, Vector3 end)
+    public static List<Vector3> PathTo(Vector3 start, Vector3 end, bool finish = false)
     {
-        return instance.FindPath(start, end);
+        var points = instance.FindPath(start, end);
+        if (finish)
+        {
+            points.Add(end);
+        }
+        return points;
     }
 
     public Vector3Int ToGridPos(Vector2Int arrayPos)

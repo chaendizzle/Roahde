@@ -101,7 +101,7 @@ public class ScreenResolution : MonoBehaviour {
 
     void OnGUI()
     {
-        CoverBlackBars();
+        //CoverBlackBars();
     }
 
     // texture that covers the black bars
