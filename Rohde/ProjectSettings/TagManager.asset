@@ -6,6 +6,7 @@ TagManager:
   tags:
   - RoomBackground
   - City
+  - Enemy
   layers:
   - Default
   - TransparentFX
