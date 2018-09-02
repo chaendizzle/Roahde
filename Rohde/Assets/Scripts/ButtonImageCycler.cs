@@ -96,4 +96,16 @@ public class ButtonImageCycler : MonoBehaviour {
         }
     }
 
+    public void Attack()
+    {
+        Player.SetState(Player.State.ATTACK);
+    }
+    public void Home()
+    {
+        Player.SetState(Player.State.HOME);
+    }
+    public void Hide()
+    {
+        Player.SetState(Player.State.STOP);
+    }
 }

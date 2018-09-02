@@ -5,21 +5,23 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float speed = 4f;
-    float growSpeed = 3.5f;
     int index = 1;
     public static int score = 0;
     float targetAngle;
     Bow bow;
 
-    enum State
+    static Player instance;
+
+    public enum State
     {
         ATTACK, STOP, HOME
     }
-    State state = State.ATTACK;
+    static State state = State.ATTACK;
 
     List<Vector3> path;
     void Start()
     {
+        instance = this;
         bow = transform.Find("Bow").GetComponent<Bow>();
     }
 
@@ -39,6 +41,10 @@ public class Player : MonoBehaviour
         }
         switch (state)
         {
+            case State.STOP:
+                break;
+            case State.HOME:
+                break;
             case State.ATTACK:
                 // look for a peasant within x meters and shoot it
                 GameObject[] peasants = GameObject.FindGameObjectsWithTag("Enemy");
@@ -69,7 +75,19 @@ public class Player : MonoBehaviour
 
     public void SetPath(List<Vector3> path)
     {
-        index = 1;
-        this.path = path;
+        if (state != State.HOME)
+        {
+            index = 1;
+            this.path = path;
+        }
+    }
+
+    public static void SetState(State state)
+    {
+        if (state == State.HOME)
+        {
+            instance.SetPath(Obstacles.PathTo(instance.transform.position, GameObject.FindGameObjectWithTag("Home").transform.position));
+        }
+        Player.state = state;
     }
 }
