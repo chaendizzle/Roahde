@@ -4,9 +4,8 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class Obstacles : MonoBehaviour {
-
-    Grid grid;
+public class Obstacles : MonoBehaviour
+{
     Tilemap tilemap;
     bool[,] obstacles;
     Pathfinder pathfinder;
@@ -17,9 +16,11 @@ public class Obstacles : MonoBehaviour {
     Vector3 startPos;
     Vector3 endPos;
 
+    static Obstacles instance;
+
     // Use this for initialization
-    void Start () {
-        grid = GetComponent<Grid>();
+    void Awake () {
+        instance = this;
         tilemap = GetComponentInChildren<Tilemap>();
         obstacles = new bool[tilemap.size.x, tilemap.size.y];
         for (int i = 0; i < tilemap.size.x; i++)
@@ -30,11 +31,12 @@ public class Obstacles : MonoBehaviour {
                 obstacles[i, j] = tile != null && tile.name == "hexagons_1";
             }
         }
-        pathfinder = new Pathfinder(obstacles);
+        pathfinder = new Pathfinder(obstacles, false);
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		if (Input.GetMouseButtonDown(0))
         {
             held = true;
@@ -83,9 +85,13 @@ public class Obstacles : MonoBehaviour {
     {
         Vector2Int startPos = ToArrayPos(tilemap.WorldToCell(start));
         Vector2Int endPos = ToArrayPos(tilemap.WorldToCell(end));
-        Debug.Log(startPos + ", " + endPos);
         return pathfinder.FindPath(startPos, endPos)
             ?.Select(p => tilemap.GetCellCenterWorld(ToGridPos(p))).ToList();
+    }
+
+    public static List<Vector3> PathTo(Vector3 start, Vector3 end)
+    {
+        return instance.FindPath(start, end);
     }
 
     public Vector3Int ToGridPos(Vector2Int arrayPos)

@@ -8,8 +8,10 @@ using UnityEngine;
 public class Pathfinder
 {
     AStarNode[,] grid;
-    public Pathfinder(bool[,] grid)
+    int parity;
+    public Pathfinder(bool[,] grid, bool parity)
     {
+        this.parity = parity ? 0 : 1;
         this.grid = new AStarNode[grid.GetLength(0), grid.GetLength(1)];
         for (int i = 0; i < grid.GetLength(0); i++)
         {
@@ -92,7 +94,7 @@ public class Pathfinder
 
     AStarNode[] GetNeighbors(Vector2Int pos)
     {
-        if (pos.y % 2 == 0)
+        if (pos.y % 2 == parity)
         {
             return new AStarNode[]{
                 GetNode(pos + Vector2Int.right),
@@ -132,8 +134,8 @@ public class Pathfinder
 
     float Heuristic(Vector2Int start, Vector2Int end)
     {
-        Vector2 startPos = new Vector2(start.y, start.y % 2 == 1 ? start.x + 0.5f : start.x);
-        Vector2 endPos = new Vector2(end.y, end.y % 2 == 1 ? end.x + 0.5f : end.x);
+        Vector2 startPos = new Vector2(start.y, start.y % 2 == parity ? start.x : start.x + 0.5f);
+        Vector2 endPos = new Vector2(end.y, end.y % 2 == parity ? end.x : end.x + 0.5f);
         return Vector2.Distance(startPos, endPos);
     }
 
