@@ -8,6 +8,7 @@ public class Obstacles : MonoBehaviour
 {
     Tilemap tilemap;
     bool[,] obstacles;
+    bool[,] playerObstacles;
     Pathfinder pathfinder;
     List<GameObject> markers = new List<GameObject>();
     public GameObject markerPrefab;
@@ -23,12 +24,14 @@ public class Obstacles : MonoBehaviour
         instance = this;
         tilemap = GetComponentInChildren<Tilemap>();
         obstacles = new bool[tilemap.size.x, tilemap.size.y];
+        playerObstacles = new bool[tilemap.size.x, tilemap.size.y];
         for (int i = 0; i < tilemap.size.x; i++)
         {
             for (int j = 0; j < tilemap.size.y; j++)
             {
                 TileBase tile = tilemap.GetTile(ToGridPos(new Vector2Int(i, j)));
-                obstacles[i, j] = tile != null && tile.name == "hexagons_1";
+                obstacles[i, j] = tile != null && tile.name != "tileset_7";
+                playerObstacles[i, j] = tile != null && (tile.name == "tileset_6" || tile.name == "tileset_8");
             }
         }
         pathfinder = new Pathfinder(obstacles, false);
