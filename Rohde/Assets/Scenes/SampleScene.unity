@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_PressedColor: {r: 0.2784314, g: 0.2784314, b: 0.2784314, a: 1}
+    m_PressedColor: {r: 0.9568628, g: 0.6509804, b: 0.13725491, a: 1}
     m_DisabledColor: {r: 0.23584908, g: 0.21026169, b: 0.21026169, a: 0.5019608}
     m_ColorMultiplier: 5
     m_FadeDuration: 0.1
@@ -183,11 +183,22 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 44652991}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1660299016}
+        m_MethodName: changeArmor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &44652991
@@ -22002,16 +22013,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89020866b59d02647885addaa1ca40e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knife_1: {fileID: 0}
+  knife_1: {fileID: 21300000, guid: c1b0d0f43ae29fc4fb736e41ab6a7f81, type: 3}
   knife_2: {fileID: 21300000, guid: 59b735ef8013af2449ec74aec35f3ba7, type: 3}
-  knife_3: {fileID: 0}
-  knife_4: {fileID: 0}
-  bow_1: {fileID: 0}
-  bow_2: {fileID: 0}
-  bow_3: {fileID: 0}
-  armor_1: {fileID: 0}
-  armor_2: {fileID: 0}
-  armor_3: {fileID: 0}
+  knife_3: {fileID: 21300000, guid: 97d4ef57be5e64342999c0c38283ce0c, type: 3}
+  knife_4: {fileID: 21300000, guid: cfe89f59b06b43d47a3222041add1b89, type: 3}
+  bow_1: {fileID: 21300000, guid: 1c5642e190a2e754aac7c078e1810ccd, type: 3}
+  bow_2: {fileID: 21300000, guid: c8f401255c144794490b37f1cfca07e4, type: 3}
+  bow_3: {fileID: 21300000, guid: 82a2fddd339d91b4e90187af20db10a1, type: 3}
+  armor_1: {fileID: 21300000, guid: 68dbd39874f09274d8f0dc3009bf6e6a, type: 3}
+  armor_2: {fileID: 21300000, guid: 7adf3761006ec874591d3c114cf8c96a, type: 3}
+  armor_3: {fileID: 21300000, guid: af58facf8f58b3f4e99114a8d9d06289, type: 3}
   button: {fileID: 0}
 --- !u!4 &1660299017
 Transform:
@@ -22936,7 +22947,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2076374871}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1660299016}
+        m_MethodName: changebow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2076374871
