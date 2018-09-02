@@ -22234,6 +22234,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89020866b59d02647885addaa1ca40e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1839937871}
+  bow: {fileID: 47052581}
   knife_1: {fileID: 21300000, guid: c1b0d0f43ae29fc4fb736e41ab6a7f81, type: 3}
   knife_2: {fileID: 21300000, guid: 59b735ef8013af2449ec74aec35f3ba7, type: 3}
   knife_3: {fileID: 21300000, guid: 97d4ef57be5e64342999c0c38283ce0c, type: 3}

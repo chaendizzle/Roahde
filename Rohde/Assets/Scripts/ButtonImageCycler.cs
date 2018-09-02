@@ -2,8 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Sprites;
 
-public class ButtonImageCycler : MonoBehaviour {
+public class ButtonImageCycler : MonoBehaviour
+{
+
+    public Player player;
+    public Bow bow;
+
     public Sprite knife_1;
     public Sprite knife_2;
     public Sprite knife_3;
@@ -18,28 +24,37 @@ public class ButtonImageCycler : MonoBehaviour {
     public Sprite armor_3;
 
     public Button button;
-    
+
+    SpriteRenderer playerRender;
+    SpriteRenderer bowRender;
 
     //initialization
     void Start()
     {
-        
+        playerRender = player.GetComponent<SpriteRenderer>();
+        bowRender = bow.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
-    void Update () {
-		
-	}
+    void Update()
+    {
+
+    }
 
 
-    public void changeKnife(){
+    public void changeKnife()
+    {
         button = GameObject.Find("btn_knife").GetComponent<UnityEngine.UI.Button>();
 
-       if ((button.GetComponent<Image>().sprite == knife_1)){
+
+
+
+        if ((button.GetComponent<Image>().sprite == knife_1))
+        {
             button.GetComponent<Image>().sprite = knife_2;
         }
 
-       else if ((button.GetComponent<Image>().sprite == knife_2))
+        else if ((button.GetComponent<Image>().sprite == knife_2))
         {
             button.GetComponent<Image>().sprite = knife_3;
         }
@@ -62,16 +77,20 @@ public class ButtonImageCycler : MonoBehaviour {
 
         if ((button.GetComponent<Image>().sprite == armor_1))
         {
+            playerRender.color = Color.green;
             button.GetComponent<Image>().sprite = armor_2;
+
         }
 
         else if ((button.GetComponent<Image>().sprite == armor_2))
         {
+            playerRender.color = Color.red;
             button.GetComponent<Image>().sprite = armor_3;
         }
 
         else if ((button.GetComponent<Image>().sprite == armor_3))
         {
+            playerRender.color = Color.white;
             button.GetComponent<Image>().sprite = armor_1;
         }
     }
@@ -83,16 +102,20 @@ public class ButtonImageCycler : MonoBehaviour {
         if ((button.GetComponent<Image>().sprite == bow_1))
         {
             button.GetComponent<Image>().sprite = bow_2;
+            bowRender.color = Color.green;
         }
 
         else if ((button.GetComponent<Image>().sprite == bow_2))
         {
             button.GetComponent<Image>().sprite = bow_3;
+            bowRender.color = Color.red;
+
         }
 
         else if ((button.GetComponent<Image>().sprite == bow_3))
         {
             button.GetComponent<Image>().sprite = bow_1;
+            bowRender.color = Color.white;
         }
     }
 
