@@ -90,4 +90,9 @@ public class Player : MonoBehaviour
         }
         Player.state = state;
     }
+
+    public int getScore()
+    {
+        return score;
+    }
 }
